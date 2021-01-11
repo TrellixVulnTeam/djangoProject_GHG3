@@ -5,9 +5,13 @@
 
 {% block body %}
     {% for person in names_list %}
-        <h2>{{ person.name }}</h2>
+        <h2><a href="{% url 'pet' person.id %}">{{ person.name }}</a></h2>
         <div>{{ person.age }}</div>
 
     {% endfor %}
-
+     <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <input type="submit" value="Добавить">
+    </form>
 {% endblock %}
